@@ -1,23 +1,20 @@
 class Solution {
 public:
+    // helper function
+    int binarySearch(vector<int>& nums, int target, int st, int end) {
+        if (st <= end) {
+            int mid = st + (end - st) / 2;
 
-    int search(vector<int>& nums, int target) {
-        int st=0 ;
-        int end = nums.size()-1;
-        int mid;
-
-        while(st<=end){
-            mid = (st+end)/2;
-            if(nums[mid]==target){
-                return mid;
-            }
-            else if(nums[mid]<target){
-                st= mid+1;
-            }
-            else{
-                end= mid-1;
+            if (nums[mid] == target) return mid;
+             else if (nums[mid] <= target) {
+                return binarySearch(nums, target, mid + 1, end);
+            } else {
+                return binarySearch(nums, target, st, mid-1);
             }
         }
-       return -1;
+        return -1;
+    }
+    int search(vector<int>& nums, int target) {
+        return binarySearch(nums, target, 0, nums.size() - 1);
     }
 };
