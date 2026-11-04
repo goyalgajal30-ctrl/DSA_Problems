@@ -7,15 +7,17 @@ public:
 
         for(int i = 0; i < s.length(); i++) {
 
-            // Odd length
             int left = i;
             int right = i;
 
+            // Odd length
             while(left >= 0 && right < s.length() && s[left] == s[right]) {
 
-                if(right - left + 1 > maxlen) {
-                    maxlen = right - left + 1;
+                int len = right - left + 1;
+
+                if(len > maxlen) {
                     start = left;
+                    maxlen = len;
                 }
 
                 left--;
@@ -28,9 +30,11 @@ public:
 
             while(left >= 0 && right < s.length() && s[left] == s[right]) {
 
-                if(right - left + 1 > maxlen) {
-                    maxlen = right - left + 1;
+                int len = right - left + 1;
+
+                if(len > maxlen) {
                     start = left;
+                    maxlen = len;
                 }
 
                 left--;
